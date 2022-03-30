@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-
+    public TurretBlueprint standardTurret;
+    public TurretBlueprint anotherTurret;
     BuildManager buildManager;
 
     void Start()
@@ -10,15 +11,15 @@ public class Shop : MonoBehaviour
         buildManager = BuildManager.instance;
     }
 
-    public void BuyTurret1()
+    public void SelectTurret1()
     {
-        Debug.Log("Pirmas bokstas nupirktas!");
-        buildManager.SetTurretToBuild(buildManager.standardTurretPrefab);
+        Debug.Log("Pirmas bokstas pasirinktas!");
+        buildManager.SelectTurretToBuild(standardTurret);
     }
 
-    public void BuyTurret2()
+    public void SelectTurret2()
     {
-        Debug.Log("Antras bokstas nupirktas!");
-        buildManager.SetTurretToBuild(buildManager.anotherTurretPrefab);
+        Debug.Log("Antras bokstas pasirinktas!");
+        buildManager.SelectTurretToBuild(anotherTurret);
     }
 }
