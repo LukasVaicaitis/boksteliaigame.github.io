@@ -3,7 +3,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public TurretBlueprint standardTurret;
-    public TurretBlueprint anotherTurret;
+    public TurretBlueprint supportTurret;
     BuildManager buildManager;
 
     void Start()
@@ -20,6 +20,6 @@ public class Shop : MonoBehaviour
     public void SelectTurret2()
     {
         Debug.Log("Antras bokstas pasirinktas!");
-        buildManager.SelectTurretToBuild(anotherTurret);
+        buildManager.SelectTurretToBuild(supportTurret);
     }
 }

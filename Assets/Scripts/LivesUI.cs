@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,10 +5,9 @@ public class LivesUI : MonoBehaviour
 {
     public Text text;
     
-
     // Update is called once per frame
     void Update()
     {
-        text.text = "Lives: " + PlayerStats.Lives + " Money: " + PlayerStats.Money;
+        text.text = PlayerStats.Lives.ToString() + " LIVES";
     }
 }
