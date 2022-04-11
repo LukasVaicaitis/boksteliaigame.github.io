@@ -2,14 +2,34 @@ using UnityEngine;
 
 public class Enemy_Movement : MonoBehaviour
 {
-    public float speed = 15f;
-
     private Transform target;
     private int wavepointIndex = 0;
+
+    public float speed = 15f;
+
+    public int health = 100;
+
+    public int moneyGain = 10;
 
     void Start()
     {
         target = Waypoints.points[0];
+    }
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        PlayerStats.Money += moneyGain;
+        Destroy(gameObject);
     }
 
     void Update()
@@ -27,12 +47,18 @@ public class Enemy_Movement : MonoBehaviour
     {
         if (wavepointIndex >= Waypoints.points.Length - 1)
         {
-            Destroy(gameObject);
+            EndPath();
             return;
         }
 
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
+    }
+
+    void EndPath()
+    {
+        PlayerStats.Lives--;
+        Destroy(gameObject);
     }
 
 }
