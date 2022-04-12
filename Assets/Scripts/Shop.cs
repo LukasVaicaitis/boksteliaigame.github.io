@@ -4,6 +4,8 @@ public class Shop : MonoBehaviour
 {
     public TurretBlueprint standardTurret;
     public TurretBlueprint supportTurret;
+    public TurretBlueprint missileTurret;
+
     BuildManager buildManager;
 
     void Start()
@@ -21,5 +23,10 @@ public class Shop : MonoBehaviour
     {
         Debug.Log("Antras bokstas pasirinktas!");
         buildManager.SelectTurretToBuild(supportTurret);
+    }
+    public void SelectTurret3()
+    {
+        Debug.Log("Trecias bokstas pasirinktas!");
+        buildManager.SelectTurretToBuild(missileTurret);
     }
 }
