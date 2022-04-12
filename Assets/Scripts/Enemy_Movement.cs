@@ -33,7 +33,9 @@ public class Enemy_Movement : MonoBehaviour
     void Die()
     {
         PlayerStats.Money += moneyGain;
+        WaveSpawner.enemiesAlive--;
         Destroy(gameObject);
+
     }
 
     void Update()
@@ -64,6 +66,7 @@ public class Enemy_Movement : MonoBehaviour
     void EndPath()
     {
         PlayerStats.Lives--;
+        WaveSpawner.enemiesAlive--;
         Destroy(gameObject);
     }
 

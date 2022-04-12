@@ -4,16 +4,19 @@ using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
+    public static int enemiesAlive = 0;
+
+    public Wave[] waves;
 
     public Transform spawnPoint;
 
-    public float timeBetweenWaves = 5f;
-    private float countdown = 2f;
+    private int waveIndex = 0;
 
-    private int waveIndex = 1;
 
-    public Text waveCountdown;
+    [Header("Next Wave attributes")]
+    public GameObject startWaveButton;
+    public Text waveText;
+
 
 
     void Start()
@@ -23,34 +26,44 @@ public class WaveSpawner : MonoBehaviour
 
     void Update()
     {
-        if (countdown <= 0f)
+        if (enemiesAlive == 0)
         {
-            StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
-        }
-
-        countdown -= Time.deltaTime;
-
-        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
-
-
-
-        waveCountdown.text = string.Format("{0:00.00}", countdown);
+            startWaveButton.SetActive(true);
+        }       
     }
 
     IEnumerator SpawnWave()
     {
-        for (int i = 0; i < waveIndex; i++)
+        Wave wave = waves[waveIndex];
+        waveIndex++;
+
+        waveText.text = string.Format("WAVE:{0}", waveIndex);
+
+        startWaveButton.SetActive(false);
+
+
+        for (int i = 0; i < wave.count; i++)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);
+            SpawnEnemy(wave.enemy);
+            yield return new WaitForSeconds(1f / wave.rate);
         }
 
-        waveIndex++;
+
+        if (waveIndex == waves.Length)
+        {
+            Debug.Log("VICTORY!");
+            this.enabled = false;
+        }
     }
 
-    void SpawnEnemy()
+    public void StartWave()
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);  
+        StartCoroutine(SpawnWave());       
+    }
+
+    void SpawnEnemy(GameObject enemy)
+    {
+        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        enemiesAlive++;
     }
 }
