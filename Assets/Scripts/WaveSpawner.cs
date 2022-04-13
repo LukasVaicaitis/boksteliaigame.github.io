@@ -36,6 +36,7 @@ public class WaveSpawner : MonoBehaviour
     {
         Wave wave = waves[waveIndex];
         waveIndex++;
+        PlayerStats.Rounds++;
 
         waveText.text = string.Format("WAVE:{0}", waveIndex);
 
