@@ -21,12 +21,12 @@ public class WaveSpawner : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        if (enemiesAlive == 0)
+        if (!WaveActive())
         {
             startWaveButton.SetActive(true);
         }       
@@ -34,13 +34,13 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
+        startWaveButton.SetActive(false);
+
         Wave wave = waves[waveIndex];
         waveIndex++;
         PlayerStats.Rounds++;
 
         waveText.text = string.Format("WAVE:{0}", waveIndex);
-
-        startWaveButton.SetActive(false);
 
 
         for (int i = 0; i < wave.count; i++)
@@ -50,7 +50,7 @@ public class WaveSpawner : MonoBehaviour
         }
 
 
-        if (waveIndex == waves.Length)
+        if (waveIndex == waves.Length && !WaveActive())
         {
             Debug.Log("VICTORY!");
             this.enabled = false;
@@ -59,12 +59,17 @@ public class WaveSpawner : MonoBehaviour
 
     public void StartWave()
     {
-        StartCoroutine(SpawnWave());       
+        StartCoroutine(SpawnWave());
     }
 
     void SpawnEnemy(GameObject enemy)
     {
         Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         enemiesAlive++;
+    }
+
+    public bool WaveActive()
+    {
+        return enemiesAlive > 0;
     }
 }

@@ -15500,13 +15500,13 @@ MonoBehaviour:
     rate: 2
   - enemy: {fileID: 6661310837223427869, guid: 5974c78e4661dda4c9043e76f1432bef, type: 3}
     count: 2
-    rate: 0.5
+    rate: 1
   - enemy: {fileID: 6661310837223427869, guid: c50b640037aec064f8464da4f5afa2e6, type: 3}
     count: 10
-    rate: 1
+    rate: 2
   - enemy: {fileID: 6661310837223427869, guid: 5974c78e4661dda4c9043e76f1432bef, type: 3}
     count: 8
-    rate: 0.5
+    rate: 1
   - enemy: {fileID: 6661310837223427869, guid: 9fb147b0331dbf94bb35b459b15b9f66, type: 3}
     count: 6
     rate: 2
