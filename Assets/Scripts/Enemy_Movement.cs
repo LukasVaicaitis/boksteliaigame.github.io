@@ -7,6 +7,8 @@ public class Enemy_Movement : MonoBehaviour
 
     public float startSpeed = 10f;
 
+    private bool enemyDiesOnce;
+
     [HideInInspector]
     public float speed;
 
@@ -18,13 +20,14 @@ public class Enemy_Movement : MonoBehaviour
     {
         speed = startSpeed;
         target = Waypoints.points[0];
+        enemyDiesOnce = false;
     }
 
     public void TakeDamage(float amount)
     {
         health -= amount;
 
-        if (health <= 0)
+        if (health <= 0 && !enemyDiesOnce)
         {
             Die();
         }
@@ -32,6 +35,8 @@ public class Enemy_Movement : MonoBehaviour
 
     void Die()
     {
+        enemyDiesOnce = true;
+
         PlayerStats.Money += moneyGain;
         WaveSpawner.enemiesAlive--;
         Destroy(gameObject);

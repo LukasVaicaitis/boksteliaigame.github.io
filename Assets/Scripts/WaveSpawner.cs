@@ -12,6 +12,8 @@ public class WaveSpawner : MonoBehaviour
 
     private int waveIndex = 0;
 
+    private bool enemiesSpawned;
+
 
     [Header("Next Wave attributes")]
     public GameObject startWaveButton;
@@ -21,21 +23,20 @@ public class WaveSpawner : MonoBehaviour
 
     void Start()
     {
-
+        enemiesSpawned = false;
     }
 
     void Update()
     {
-        if (!WaveActive())
+        if (!WaveActive() && enemiesSpawned == true)
         {
             startWaveButton.SetActive(true);
+            enemiesSpawned = false;
         }       
     }
 
     IEnumerator SpawnWave()
     {
-        startWaveButton.SetActive(false);
-
         Wave wave = waves[waveIndex];
         waveIndex++;
         PlayerStats.Rounds++;
@@ -45,10 +46,11 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < wave.count; i++)
         {
-            SpawnEnemy(wave.enemy);
+            SpawnEnemy(wave.enemy);           
             yield return new WaitForSeconds(1f / wave.rate);
         }
 
+        enemiesSpawned = true;
 
         if (waveIndex == waves.Length && !WaveActive())
         {
@@ -60,16 +62,17 @@ public class WaveSpawner : MonoBehaviour
     public void StartWave()
     {
         StartCoroutine(SpawnWave());
+        startWaveButton.SetActive(false);
     }
 
     void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         enemiesAlive++;
+        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
     }
 
     public bool WaveActive()
     {
-        return enemiesAlive > 0;
+        return enemiesAlive != 0;
     }
 }
