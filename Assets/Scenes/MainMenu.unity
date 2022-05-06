@@ -764,7 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3159bf852de090b4a915276b48780dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Level1
+  sceneToLoad: LevelSelect
   settingsScene: 
 --- !u!1 &1641320544
 GameObject:
