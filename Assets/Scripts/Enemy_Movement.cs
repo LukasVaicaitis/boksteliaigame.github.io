@@ -16,6 +16,7 @@ public class Enemy_Movement : MonoBehaviour
 
     public int moneyGain = 10;
 
+
     void Start()
     {
         speed = startSpeed;

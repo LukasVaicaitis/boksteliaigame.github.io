@@ -14,6 +14,8 @@ public class WaveSpawner : MonoBehaviour
 
     private bool enemiesSpawned;
 
+    public Manager manager;
+
 
     [Header("Next Wave attributes")]
     public GameObject startWaveButton;
@@ -28,6 +30,15 @@ public class WaveSpawner : MonoBehaviour
 
     void Update()
     {
+        if (enemiesAlive > 0)
+            return;
+
+        if (waveIndex == waves.Length && !WaveActive())
+        {
+            manager.WinLevel();
+            this.enabled = false;
+        }
+
         if (!WaveActive() && enemiesSpawned == true)
         {
             startWaveButton.SetActive(true);
@@ -51,12 +62,6 @@ public class WaveSpawner : MonoBehaviour
         }
 
         enemiesSpawned = true;
-
-        if (waveIndex == waves.Length && !WaveActive())
-        {
-            Debug.Log("VICTORY!");
-            this.enabled = false;
-        }
     }
 
     public void StartWave()
