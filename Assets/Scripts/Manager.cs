@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Manager : MonoBehaviour
     public GameObject gameOverUI;
 
     public GameObject completeLevelUI;
+
+    public string nextLevel = "Level3";
+    public int levelToUnlock = 3;
 
     void Start ()
     {
@@ -28,12 +32,16 @@ public class Manager : MonoBehaviour
         {
             EndGame();
         }
-        */
+        if (Input.GetKeyDown("e"))
+        {
+            WinLevel();
+        }
 
         if (PlayerStats.Lives <= 0)
         {
             EndGame();
         }
+        */
     }
 
     void EndGame()
@@ -45,6 +53,7 @@ public class Manager : MonoBehaviour
     public void WinLevel()
     {
         GameIsOver = true;
+        PlayerPrefs.SetInt("levelReached", levelToUnlock);
         completeLevelUI.SetActive(true);
     }
 }

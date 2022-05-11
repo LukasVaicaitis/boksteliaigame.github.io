@@ -16372,6 +16372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 1715539527}
   completeLevelUI: {fileID: 867562630}
+  nextLevel: Level2
+  levelToUnlock: 2
 --- !u!1001 &1542407927
 PrefabInstance:
   m_ObjectHideFlags: 0
