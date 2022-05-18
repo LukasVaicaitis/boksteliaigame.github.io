@@ -36,12 +36,12 @@ public class Manager : MonoBehaviour
         {
             WinLevel();
         }
-
+        */
         if (PlayerStats.Lives <= 0)
         {
             EndGame();
         }
-        */
+        
     }
 
     void EndGame()

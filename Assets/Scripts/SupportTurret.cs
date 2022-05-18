@@ -84,6 +84,7 @@ public class SupportTurret : MonoBehaviour
         {
             lineRenderer.enabled = true;
             impactEffect.Play();
+            FindObjectOfType<AudioManager>().Play("FreezingTowerShoot");
         }
 
         lineRenderer.SetPosition(0, firePoint.position);

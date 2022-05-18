@@ -92,7 +92,7 @@ public class Node : MonoBehaviour
 		Destroy(effect, 5f);
 
 		isUpgraded = true;
-
+		FindObjectOfType<AudioManager>().Play("UpgradeSound");
 		Debug.Log("Turret upgraded!");
 	}
 
@@ -103,6 +103,7 @@ public class Node : MonoBehaviour
 		GameObject effect = (GameObject)Instantiate(buildManager.sellEffect, GetBuildPosition(), Quaternion.identity);
 		Destroy(effect, 5f);
 
+		FindObjectOfType<AudioManager>().Play("SellSound");
 		Destroy(turret);
 		turretBlueprint = null;
 	}

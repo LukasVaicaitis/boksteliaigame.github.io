@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour
 
     public int damage = 50;
 
-
     public void Seek(Transform _target)
     {
         target = _target;

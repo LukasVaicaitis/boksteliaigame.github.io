@@ -40,6 +40,7 @@ public class Enemy_Movement : MonoBehaviour
 
         PlayerStats.Money += moneyGain;
         WaveSpawner.enemiesAlive--;
+        FindObjectOfType<AudioManager>().Play("EnemyDeath");
         Destroy(gameObject);
 
     }
