@@ -1,7 +1,7 @@
 # Tower defence game project
 
 ## About:
-This game was made by 3 team members in Unity. This project marked my first hands-on experience with game development and the Unity game engine.
+This game was made by 3 team members in Unity. This project marked my first hands-on experience with game development and the Unity game engine. The point of this project was not to create a breakthrough game, but to familiarize with working by using Agile development
 
 ### Project features:
 1. Strategically place towers around the map.
